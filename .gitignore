@@ -1,0 +1,15 @@
+# Maven Build Directories
+BE/target/
+BE/bin/
+
+# Node Dependencies and Builds
+employee-service-frontend/node_modules/
+employee-service-frontend/dist/
+employee-service-frontend/.angular/
+
+# IDE and System Files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+*.log

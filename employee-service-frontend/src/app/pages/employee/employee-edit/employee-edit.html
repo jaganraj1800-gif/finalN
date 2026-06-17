@@ -1,0 +1,195 @@
+<div class="container mt-4">
+
+  <div class="card shadow">
+
+    <div class="card-header bg-warning text-dark">
+      <h3 class="mb-0">Edit Employee</h3>
+    </div>
+
+    <div class="card-body">
+
+      <form [formGroup]="employeeForm" (ngSubmit)="updateEmployee()">
+
+        <div class="row">
+
+          <!-- Employee Name English -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Employee Name (English) <span class="text-danger">*</span>
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="employeeNameEnglish">
+
+            @if (employeeForm.get('employeeNameEnglish')?.invalid &&
+                 employeeForm.get('employeeNameEnglish')?.touched) {
+
+              <small class="text-danger">
+                Employee Name is required.
+              </small>
+
+            }
+          </div>
+
+          <!-- Employee Name Tamil -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Employee Name (Tamil) <span class="text-danger">*</span>
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="employeeNameTamil"
+              (input)="transliterateTamil($event)"
+              (blur)="onTamilBlur($event)">
+
+            @if (employeeForm.get('employeeNameTamil')?.invalid &&
+                 employeeForm.get('employeeNameTamil')?.touched) {
+
+              <small class="text-danger">
+                Tamil Name is required.
+              </small>
+
+            }
+          </div>
+
+          <!-- Employee Code -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Employee Code
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="employeeCode">
+          </div>
+
+          <!-- Designation -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Designation
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="designation">
+
+              <option value="">
+                Select Designation
+              </option>
+
+              @for (d of designationList; track d) {
+
+                <option [value]="d">
+                  {{ d }}
+                </option>
+
+              }
+
+            </select>
+          </div>
+
+          <!-- Department -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Department
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="department">
+          </div>
+
+          <!-- Date of Joining -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Date of Joining
+            </label>
+
+            <input
+              type="date"
+              class="form-control"
+              formControlName="dateOfJoining">
+          </div>
+
+          <!-- Mobile Number -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Mobile Number
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="mobileNumber">
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Email
+            </label>
+
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email">
+          </div>
+
+          <!-- Remarks -->
+          <div class="col-12 mb-3">
+            <label class="form-label">
+              Remarks
+            </label>
+
+            <textarea
+              rows="4"
+              class="form-control"
+              formControlName="remarks">
+            </textarea>
+          </div>
+
+          <!-- PDF Upload -->
+          <div class="col-12 mb-4">
+            <label class="form-label">
+              Appointment Order (PDF)
+            </label>
+
+            <input
+              type="file"
+              class="form-control"
+              accept=".pdf"
+              (change)="onFileChange($event)">
+          </div>
+
+        </div>
+
+        <div class="text-end">
+
+          <button
+            type="button"
+            class="btn btn-secondary me-2"
+            (click)="employeeForm.reset()">
+            Reset
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-warning">
+            Update Employee
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

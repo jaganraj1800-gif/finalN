@@ -1,0 +1,80 @@
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Employee List</h2>
+
+    <button class="btn btn-primary" routerLink="/employee/create">
+      Add Employee
+    </button>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-4 col-sm-6">
+      <div class="search-box">
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="🔍 Search by name or code..."
+          [(ngModel)]="searchQuery"
+        />
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped table-hover">
+
+    <thead class="table-dark">
+      <tr>
+        <th>S.No</th>
+        <th>Employee Code</th>
+        <th>English Name</th>
+        <th>Tamil Name</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Date of Joining</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      @for (emp of filteredEmployees; track emp.id || emp.employeeCode || $index; let i = $index) {
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{ emp.employeeCode || 11 }}</td>
+        <td>{{ emp.employeeNameEnglish }}</td>
+        <td>{{ emp.employeeNameTamil }}</td>
+        <td>{{ emp.designation }}</td>
+        <td>{{ emp.department }}</td>
+        <td>{{ emp.dateOfJoining }}</td>
+        <td>{{ emp.mobileNumber }}</td>
+        <td>{{ emp.email }}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-2" [routerLink]="['/employee/view', emp.id]">
+            View
+          </button>
+
+          <button class="btn btn-sm btn-warning me-2" [routerLink]="['/employee/edit', emp.id]">
+            Edit
+          </button>
+
+          <button class="btn btn-sm btn-success" (click)="downloadPdf(emp.id)">
+            Report
+          </button>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="10" class="text-center">
+          No Records Found
+        </td>
+      </tr>
+      }
+
+    </tbody>
+
+  </table>
+
+</div>
