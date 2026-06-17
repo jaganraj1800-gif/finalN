@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/employee/list">
+      <span class="fs-4 me-2">🏢</span>
+      <strong>NIC Employee Portal</strong>
+    </a>
+    <div class="navbar-nav ms-auto flex-row">
+      <a class="nav-link px-2" routerLink="/employee/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        📂 Employee List
+      </a>
+      <a class="nav-link px-2 ms-3" routerLink="/employee/create" routerLinkActive="active">
+        ➕ Add Employee
+      </a>
+    </div>
+  </div>
+</nav>
